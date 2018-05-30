@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../../services/words.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -11,8 +12,11 @@ export class GameComponent implements OnInit {
   word: string[];
   letters: string[] = [];
   usedLetters: string[] = [];
+  tries: number = 5;
 
-  constructor(private wordsSerice: WordsService) { }
+  constructor(
+    private wordsSerice: WordsService,
+    private router: Router) { }
 
   ngOnInit() {
     this.word = this.wordsSerice.getRandomWord().split('');
@@ -31,6 +35,16 @@ export class GameComponent implements OnInit {
 
     if (this.word.indexOf(letter) !== -1) {
       this.updateLetters(letter);
+    } else {
+      this.tries--;
+    }
+
+    if (this.tries < 1) {
+      this.router.navigate(['/lose']);
+    }
+
+    if (this.letters.indexOf('_') === -1) {
+      this.router.navigate(['/win']);
     }
     this.usedLetters.push(letter);
   }
