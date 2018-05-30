@@ -1,0 +1,8 @@
+a,a:hover,a:active,a:checked {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: #d8433e;
+}
