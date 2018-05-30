@@ -12,6 +12,6 @@ export class WordsService {
   constructor() { }
 
   getAllWords() {
-    return Observable.create(this.words);
+    return this.words;
   }
 }

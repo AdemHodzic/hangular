@@ -11,6 +11,6 @@ export class UserService {
   constructor() { }
 
   getAllUsers() {
-    return Observable.create(this.users);
+    return this.users;
   }
 }
