@@ -1,0 +1,16 @@
+.game {
+  font-size: 4rem;
+  letter-spacing: 1rem;
+}
+
+label, input {
+  font-size: 1.5rem;
+  font-style: bold;
+}
+
+.row {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+}

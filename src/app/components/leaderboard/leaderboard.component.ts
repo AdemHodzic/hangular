@@ -10,12 +10,21 @@ import { User } from 'src/app/commons/user';
 export class LeaderboardComponent implements OnInit {
 
   users: User[];
-
+  number = 1;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.users = this.userService.getAllUsers();
-    console.log(this.users);
+    this.users.sort(this.compare);
   }
 
+  private compare(a: User, b: User) {
+    if (a.highscore < b.highscore) {
+      return 1;
+    }
+    if (a.highscore > b.highscore) {
+      return -1;
+    }
+    return 0;
+  }
 }

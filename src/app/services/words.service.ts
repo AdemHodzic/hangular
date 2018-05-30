@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import 'rxjs/add/observable/of';
 import { WORDS } from '../commons/mock-words';
 
 @Injectable({
@@ -13,5 +12,11 @@ export class WordsService {
 
   getAllWords() {
     return this.words;
+  }
+
+  getRandomWord() {
+    const maximum = this.words.length;
+    const index = Math.floor(Math.random() * maximum);
+    return this.words[index];
   }
 }

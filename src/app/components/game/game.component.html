@@ -1,3 +1,19 @@
-<p>
-  game works!
-</p>
+<div class="row">
+
+  <div class="col-sm-12 game">
+    <span *ngFor="let letter of letters">{{ letter }}</span>
+    <div class="form-group">
+        <label for="input">Last letter entered: </label>
+        <input
+        #input
+        name="input"
+        type="text"
+        (keydown)="handle($event, input)"
+        >
+      </div>
+  </div>
+
+</div>
+
+
+
