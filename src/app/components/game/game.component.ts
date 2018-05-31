@@ -13,7 +13,7 @@ export class GameComponent implements OnInit {
   word: string[];
   letters: string[] = [];
   usedLetters: string[] = [];
-  tries: number = 5;
+  tries = 5;
   score = 0;
 
   constructor(

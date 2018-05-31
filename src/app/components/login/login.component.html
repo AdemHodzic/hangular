@@ -1,0 +1,26 @@
+<form [formGroup]="form" (keyup.enter)="login()">
+  <div class="form-inline">
+    <label for="username" class="form-label">Name: </label>
+    <input
+      type="text"
+      name="username"
+      formControlName="username"
+      class="form-control"
+      >
+  </div>
+  <div class="form-inline">
+    <label for="password" class="form-label">Password: </label>
+    <input
+      type="password"
+      name="password"
+      formControlName="password"
+      class="form-control"
+      >
+  </div>
+</form>
+
+<p class="lead">*press Enter to submit form</p>
+
+<a routerLink="/register" class="btn btn-outline-danger">I don't have an account yet..</a>
+
+<div class="alert alert-danger" [hidden] = "!failedLogin">Login failed!</div>

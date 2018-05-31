@@ -1,0 +1,26 @@
+<form [formGroup]="form" (keyup.enter)="register()">
+  <div class="form-inline">
+    <label for="username" class="form-label">Name: </label>
+    <input
+      type="text"
+      name="username"
+      formControlName="username"
+      class="form-control"
+      >
+  </div>
+  <div class="form-inline">
+    <label for="password" class="form-label">Password: </label>
+    <input
+      type="password"
+      name="password"
+      formControlName="password"
+      class="form-control"
+      >
+  </div>
+</form>
+
+<p class="lead">*press Enter to submit form</p>
+
+<a routerLink="/" class="btn btn-outline-danger">I want to login..</a>
+
+<div class="alert alert-danger" [hidden] = "!failedRegister">Register failed! User Already exists...</div>
