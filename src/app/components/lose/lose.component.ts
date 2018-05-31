@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-lose',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoseComponent implements OnInit {
 
-  constructor() { }
+  score: number;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.score = this.userService.getScore();
   }
+
 
 }

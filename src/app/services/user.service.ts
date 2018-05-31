@@ -7,10 +7,19 @@ import { USERS } from '../commons/mock-users';
 export class UserService {
 
   users = USERS;
+  score: number;
 
   constructor() { }
 
   getAllUsers() {
     return this.users;
+  }
+
+  setScore(score: number) {
+    this.score = score;
+  }
+
+  getScore() {
+    return this.score;
   }
 }
