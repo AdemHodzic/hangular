@@ -27,9 +27,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.user = new User(this.username);
+    this.user = new User(this.username, this.password);
 
     if (!this.userService.validate(this.user)) {
+      this.userService.addUser(this.user);
+      this.userService.setUser(this.user);
       this.router.navigate(['/menu']);
     } else {
       this.failedRegister = true;
