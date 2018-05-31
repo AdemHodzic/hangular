@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WordsService } from '../../services/words.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-game',
@@ -12,10 +13,12 @@ export class GameComponent implements OnInit {
   word: string[];
   letters: string[] = [];
   usedLetters: string[] = [];
-  tries: number = 5;
+  tries = 5;
+  score = 0;
 
   constructor(
     private wordsSerice: WordsService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit() {
@@ -40,10 +43,12 @@ export class GameComponent implements OnInit {
     }
 
     if (this.tries < 1) {
+      this.userService.setScore(this.score);
       this.router.navigate(['/lose']);
     }
 
     if (this.letters.indexOf('_') === -1) {
+      this.userService.setScore(this.score);
       this.router.navigate(['/win']);
     }
     this.usedLetters.push(letter);
@@ -53,6 +58,7 @@ export class GameComponent implements OnInit {
     for (let i = 0; i < this.word.length; i++) {
       if (this.word[i] === letter) {
         this.letters[i] = letter;
+        this.score += 10;
       }
     }
   }

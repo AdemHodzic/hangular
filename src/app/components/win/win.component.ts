@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-win',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WinComponent implements OnInit {
 
-  constructor() { }
+  score: number;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.score = this.userService.getScore();
   }
 
 }

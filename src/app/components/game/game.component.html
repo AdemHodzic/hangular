@@ -1,22 +1,29 @@
 <div class="row">
 
-  <div class="col-sm-12 game">
+  <div class="col-sm-12 game text-center">
+    <h4 class="display-3 text-center">Lives left: <br>{{ tries }}</h4>
     <div class="letters">
       <span *ngFor="let letter of letters">{{ letter }}</span>
     </div>
-    <div class="form-group form-inline">
-        <label for="input">Last letter entered: </label>
-        <input
-        class="form-control"
-        #input
-        name="input"
-        type="text"
-        (keydown)="handle($event, input)"
-        >
-      </div>
   </div>
-
 </div>
+<div class="used-keys">
+    <h3>Keys used so far:</h3>
+    <span *ngFor="let letter of usedLetters"><h4><q>{{ letter }}</q></h4></span>
+</div>
+<div class="form-group form-inline input">
+  <label for="input">Last letter entered: </label>
+  <input
+    class="form-control"
+    #input
+    name="input"
+    type="text"
+    (keydown)="handle($event, input)"
+    placeholder="None"
+    autofocus
+    >
+</div>
+
 
 
 

@@ -8,3 +8,7 @@ label, input {
   font-style: bold;
 }
 
+
+.used-keys * {
+  display: inline-block;
+}

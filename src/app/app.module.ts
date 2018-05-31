@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RoutingModule } from './modules/routing/routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -10,6 +10,8 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { WinComponent } from './components/win/win.component';
 import { LoseComponent } from './components/lose/lose.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,15 @@ import { LoseComponent } from './components/lose/lose.component';
     LeaderboardComponent,
     PageNotFoundComponent,
     WinComponent,
-    LoseComponent
+    LoseComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
