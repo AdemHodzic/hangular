@@ -21,7 +21,7 @@ export class WinComponent implements OnInit {
   }
 
   private updateScore() {
-
+    this.user.tries++;
     if (this.user.highscore < this.score) {
       this.user.highscore = this.score;
     }
