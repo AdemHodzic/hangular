@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { User } from 'src/app/commons/user';
 
 @Component({
   selector: 'app-win',
@@ -9,11 +10,22 @@ import { UserService } from '../../services/user.service';
 export class WinComponent implements OnInit {
 
   score: number;
-
-  constructor(private userService: UserService) { }
+  user: User;
+  constructor(
+    private userService: UserService) { }
 
   ngOnInit() {
     this.score = this.userService.getScore();
+    this.user = this.userService.getUser();
+    this.updateScore();
+  }
+
+  private updateScore() {
+
+    if (this.user.highscore < this.score) {
+      this.user.highscore = this.score;
+    }
+
   }
 
 }

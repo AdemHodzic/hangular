@@ -1,10 +1,12 @@
 export class User {
   name: string;
-  highscore: number;
-  tries: number;
+  password: string;
+  highscore = 0;
+  tries = 0;
 
-  constructor(name: string, highscore?: number, tries?: number) {
+  constructor(name: string, password: string, highscore = 0, tries = 0) {
     this.name = name;
+    this.password = password;
     this.highscore = highscore;
     this.tries = tries;
   }
