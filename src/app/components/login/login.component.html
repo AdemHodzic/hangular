@@ -26,8 +26,10 @@
 
   <a routerLink="/register" class="btn btn-outline-danger">I don't have an account yet..</a>
 
-  <div class="alert alert-danger" [hidden] = "!failedLogin">Login failed!</div>
 
 </div>
   <div class="col-sm-4"></div>
 </div>
+<div class="alert alert-danger" [hidden] = "!failedLogin">Login failed!</div>
+
+<div class="alert alert-danger" *ngIf="username.touched && username.errors">Invalid name</div>
