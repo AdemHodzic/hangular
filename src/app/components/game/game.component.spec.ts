@@ -22,4 +22,7 @@ describe('GameComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  fit('should be defined', () => {
+    expect(component.word).toBeDefined();
+  });
 });

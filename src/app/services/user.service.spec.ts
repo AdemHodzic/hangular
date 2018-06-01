@@ -1,6 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { UserService } from './user.service';
+import { WordsService } from './words.service';
 
 describe('UserService', () => {
   beforeEach(() => {
@@ -9,8 +10,4 @@ describe('UserService', () => {
     });
   });
 
-  fit('should be created', inject([UserService], (service: UserService) => {
-    const user = service.getUserByUsername('Admin');
-    expect(user).toBeTruthy();
-  }));
 });

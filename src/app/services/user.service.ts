@@ -68,7 +68,7 @@ export class UserService {
       data.forEach(element => {
         const name = element.login.username;
         const pass = element.login.password;
-        const user = new User(name, pass);
+        const user = new User(name, pass, 0, 0);
         this.users.push(user);
       });
     });

@@ -17,15 +17,20 @@ export class GameComponent implements OnInit {
   score = 0;
 
   constructor(
-    private wordsSerice: WordsService,
+    private wordsService: WordsService,
     private userService: UserService,
     private router: Router) { }
 
   ngOnInit() {
-    this.word = this.wordsSerice.getRandomWord().split('');
-    for (let i = 0; i < this.word.length; i++) {
-      this.letters.push('_');
-    }
+    const index = Math.floor(Math.random() * 50);
+    this.wordsService
+      .getWords()
+      .subscribe(data => {
+        this.word = data[index].word.split('');
+        for (const c of this.word) {
+          this.letters.push('_');
+        }
+      });
   }
 
   handle(e, el) {
@@ -55,6 +60,7 @@ export class GameComponent implements OnInit {
   }
 
   private updateLetters(letter) {
+    console.log('Word in update letters is ' + this.word)
     for (let i = 0; i < this.word.length; i++) {
       if (this.word[i] === letter) {
         this.letters[i] = letter;
