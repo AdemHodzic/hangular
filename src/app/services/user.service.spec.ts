@@ -9,7 +9,8 @@ describe('UserService', () => {
     });
   });
 
-  it('should be created', inject([UserService], (service: UserService) => {
-    expect(service).toBeTruthy();
+  fit('should be created', inject([UserService], (service: UserService) => {
+    const user = service.getUserByUsername('Admin');
+    expect(user).toBeTruthy();
   }));
 });
