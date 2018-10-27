@@ -58,6 +58,7 @@ export class UserService {
   getFromHttp() {
     return this.http.get(this.api)
     .pipe(
+      map(data=>JSON.parse(data.toString())),
       map(data => data.results)
     );
   }
