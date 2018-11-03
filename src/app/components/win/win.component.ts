@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService, GameService, ApiService } from '@app/services';
 import { User } from 'src/app/commons/user';
 
 @Component({
@@ -12,11 +12,14 @@ export class WinComponent implements OnInit {
   score: number;
   user: User;
   constructor(
-    private userService: UserService) { }
+    private userService: UserService,
+    private gameService: GameService,
+    private apiService: ApiService,
+    ) { }
 
   ngOnInit() {
-    this.score = this.userService.getScore();
     this.user = this.userService.getUser();
+    this.score = this.gameService.getScore();
     this.updateScore();
   }
 
@@ -25,7 +28,10 @@ export class WinComponent implements OnInit {
     if (this.user.highscore < this.score) {
       this.user.highscore = this.score;
     }
-
+    this.apiService.updateUser(this.user)
+      .subscribe(
+        data => console.log(data),
+        err => console.log(err));
   }
 
 }
