@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { User } from '../../commons/user';
+import { User } from '@app/commons';
+import { ApiService, UserService } from '@app/services';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
 
   failedRegister = false;
   constructor(
+    private apiService: ApiService,
     private userService: UserService,
     private router: Router) { }
 
@@ -28,15 +29,12 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.user = new User(this.username, this.password);
-
-    if (!this.userService.validate(this.user)) {
-      this.userService.addUser(this.user);
-      this.userService.setUser(this.user);
-      this.router.navigate(['/menu']);
-    } else {
-      this.failedRegister = true;
-    }
-
+    this.apiService.registerUser(this.user)
+      .subscribe(
+        data => {
+          this.userService.setUser(data)
+        },
+        err => console.error(err));
   }
   get username() {
     return this.form.get('username').value;

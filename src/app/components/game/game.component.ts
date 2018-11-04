@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { WordsService } from '../../services/words.service';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { GameService, UserService } from '@app/services';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-game',
@@ -10,6 +9,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class GameComponent implements OnInit {
 
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+      this.handle(event);
+  }
+
   word: string[];
   letters: string[] = [];
   usedLetters: string[] = [];
@@ -17,20 +21,19 @@ export class GameComponent implements OnInit {
   score = 0;
 
   constructor(
-    private wordsSerice: WordsService,
-    private userService: UserService,
+    private gameService: GameService,
     private router: Router) { }
 
   ngOnInit() {
-    this.word = this.wordsSerice.getRandomWord().split('');
+    this.word = this.gameService.getRandomWord().split('');
     for (let i = 0; i < this.word.length; i++) {
       this.letters.push('_');
     }
+
   }
 
-  handle(e, el) {
+  handle(e) {
     const letter = e.key;
-    el.value = null;
     console.log(this.word);
     if (this.usedLetters.indexOf(letter) !== -1) {
       return;
@@ -43,12 +46,12 @@ export class GameComponent implements OnInit {
     }
 
     if (this.tries < 1) {
-      this.userService.setScore(this.score);
+      this.gameService.setScore(this.score);
       this.router.navigate(['/lose']);
     }
 
     if (this.letters.indexOf('_') === -1) {
-      this.userService.setScore(this.score);
+      this.gameService.setScore(this.score);
       this.router.navigate(['/win']);
     }
     this.usedLetters.push(letter);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/commons/user';
+import { User } from '@app/commons';
+import { GameService, ApiService, UserService } from '@app/services';
 
 @Component({
   selector: 'app-lose',
@@ -11,10 +11,14 @@ export class LoseComponent implements OnInit {
 
   score: number;
   user: User;
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private gameService: GameService,
+    private apiService: ApiService
+    ) { }
 
   ngOnInit() {
-    this.score = this.userService.getScore();
+    this.score = this.gameService.getScore();
     this.user = this.userService.getUser();
     this.updateScore();
   }
@@ -24,6 +28,10 @@ export class LoseComponent implements OnInit {
     if (this.user.highscore < this.score) {
       this.user.highscore = this.score;
     }
+    this.apiService.updateUser(this.user)
+      .subscribe(
+        data => console.log(data),
+        err => console.log(err));
   }
 
 }
